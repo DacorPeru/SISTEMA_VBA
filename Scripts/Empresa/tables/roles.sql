@@ -1,0 +1,6 @@
+IF OBJECT_ID('dbo.roles','U') IS NULL
+CREATE TABLE dbo.roles(
+  id_rol INT IDENTITY(1,1) PRIMARY KEY,
+  nombre NVARCHAR(50) NOT NULL UNIQUE,
+  descripcion NVARCHAR(150) NULL
+);
