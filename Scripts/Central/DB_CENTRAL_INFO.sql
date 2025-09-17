@@ -8,11 +8,9 @@ GO
 SET XACT_ABORT ON;
 BEGIN TRAN;
 
----------------------------------------------------------------
--- 1) SUPERADMIN INICIAL
----------------------------------------------------------------
-DECLARE @sa_correo NVARCHAR(150) = N'sa@midominio.com';   -- <-- cambia
-DECLARE @sa_pwd    NVARCHAR(200) = N'ClaveFuerte#2025';   -- <-- cambia
+-- 1) SUPERADMIN INICIAL (ajusta correo/clave)
+DECLARE @sa_correo NVARCHAR(150) = N'sa@midominio.com';
+DECLARE @sa_pwd    NVARCHAR(200) = N'ClaveFuerte#2025';
 
 IF NOT EXISTS (SELECT 1 FROM dbo.superadmins)
 BEGIN
@@ -26,16 +24,14 @@ BEGIN
             @hash, @salt, 1);
 END
 
----------------------------------------------------------------
--- 2) EMPRESA DEMO
----------------------------------------------------------------
+-- 2) EMPRESA DEMO (ajusta si tu entorno usa otros nombres)
 IF NOT EXISTS (SELECT 1 FROM dbo.empresas WHERE codigo_empresa = 'EMP001')
 BEGIN
     INSERT INTO dbo.empresas
            (codigo_empresa, ruc, razon_social, nombre_comercial, tipo_empresa,
             db_server, db_name, activo)
     VALUES ('EMP001', '00000000000', N'EMPRESA DEMO S.A.C.', N'EMPRESA DEMO', 'Privada',
-            N'.', N'BD_EMPRESA_001', 1);   -- instancia local y BD ejemplo
+            N'.', N'BD_EMPRESA_001', 1);
 END
 
 COMMIT;
