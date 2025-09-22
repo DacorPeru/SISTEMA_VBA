@@ -1,0 +1,6 @@
+{
+  "Server": "(localdb)\\MSSQLLocalDB",
+  "Database": "MiBaseUnica",
+  "Trusted": true,
+  "Timeout": 30
+}

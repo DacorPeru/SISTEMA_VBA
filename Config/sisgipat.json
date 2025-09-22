@@ -1,0 +1,6 @@
+{
+  "Server": "(localdb)\\MSSQLLocalDB",
+  "Database": "SISGIPAT",
+  "Trusted": true,
+  "Timeout": 30
+}
