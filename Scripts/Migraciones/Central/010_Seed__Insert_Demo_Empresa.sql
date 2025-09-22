@@ -1,17 +1,8 @@
-/*USE SISGIPAT;
+USE SISGIPAT;
 GO
+IF OBJECT_ID('dbo.emp','U') IS NULL
+  THROW 51030, 'Falta dbo.emp. Ejecuta 005_Tables__Create_emp.sql.', 1;
 
-/* Inserta empresa DEMO idempotente */
-IF NOT EXISTS (SELECT 1 FROM dbo.emp WHERE codigo='DEMO')
-BEGIN
-    INSERT dbo.emp(
-        codigo, nombre, ruc, servidor, base_datos, usuario, [password], trusted,
-        [timeout], entorno, bloqueado, baja, estado, email_contacto
-    )
-    VALUES(
-        N'DEMO', N'Empresa Demo S.A.C.', '20123456789',
-        N'(localdb)\\MSSQLLocalDB', N'SISGIPAT_EMP_DEMO', NULL, NULL, 1,
-        30, 'DEMO', 0, 0, 'ACTIVO', N'contacto@demo.com'
-    );
-END*/
+IF NOT EXISTS (SELECT 1 FROM dbo.emp WHERE BaseDatos='SISGIPAT')
+  INSERT dbo.emp(RUC,RazonSocial,BaseDatos,Estado) VALUES('00000000000',N'Empresa Demo','SISGIPAT','ACTIVO');
 GO
